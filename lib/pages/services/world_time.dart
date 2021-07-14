@@ -6,6 +6,7 @@ class WorldTime{
     String location;
     String time = "kolo";
     String url;
+    bool isDaytime = false;
 
     WorldTime(this.location, this.url);
 
@@ -21,6 +22,7 @@ class WorldTime{
 
       DateTime date = DateTime.parse(dateTime);
       date = date.add(Duration(hours: int.parse(offset)));
+      isDaytime = date.hour > 6 && date.hour < 19 ? true : false;
       time = DateFormat.jm().format(date);
     }catch(e){
       print('caught error: $e');
